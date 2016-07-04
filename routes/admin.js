@@ -2,10 +2,18 @@ var express = require('express');
 var router = express.Router();
 
 //  TODO  Get order list by using member id.
-router.post('/', function(req, res) {
+router.post('/', function (req, res) {
   var _rtnObj = new Object();
 
   if (true) {
+    console.log(req.body.action);
+    if (req.body.action == 'add') {
+      _rtnObj = req.body;
+      _rtnObj.id = '114';
+    } else {
+      _rtnObj = req.body;
+    }
+
     res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
     res.write(JSON.stringify(_rtnObj));
   } else {
@@ -17,12 +25,11 @@ router.post('/', function(req, res) {
 });
 
 router.get('/', function(req, res) {
-
   var _rtnArr = [{
     'id': '22',
     'target': '_self',
     'url': '/coupon',
-    'folder': false,
+    'isParent': false,
     'name': '折價卷列表',
     'icon': 'fa fa-smile-o fa-fw',
     'desc': '折價卷資料呈獻'
@@ -30,7 +37,7 @@ router.get('/', function(req, res) {
     'id': '23',
     'target': '_self',
     'url': '/coupon_edit',
-    'folder': false,
+    'isParent': false,
     'name': '折價卷編輯',
     'icon': 'fa fa-pencil fa-fw',
     'desc': '折價卷內容編輯'
@@ -38,7 +45,7 @@ router.get('/', function(req, res) {
     'id': '24',
     'target': '_self',
     'url': '/test',
-    'folder': false,
+    'isParent': true,
     'name': '測試',
     'icon': 'fa fa-certificate fa-fw',
     'desc': '測試用'
@@ -46,7 +53,7 @@ router.get('/', function(req, res) {
     'id': '36',
     'target': '_self',
     'url': '/admin/config/supplier',
-    'folder': false,
+    'isParent': false,
     'name': '供應商設定',
     'icon': 'fa fa-dashboard fa-fw',
     'desc': '供應商資料設定'
@@ -54,7 +61,7 @@ router.get('/', function(req, res) {
     'id': '40',
     'target': '_self',
     'url': '/admin/account/manage',
-    'folder': false,
+    'isParent': false,
     'name': '帳號管理',
     'icon': 'fa fa-book fa-fw',
     'desc': '後台帳號管理'
