@@ -17,6 +17,8 @@ var keyword = require('./routes/keyword');
 var login = require('./routes/login');
 var wishlist = require('./routes/wishlist');
 var admin = require('./routes/admin');
+var groups = require('./routes/groups');
+var db = require('./db');
 
 var app = express();
 
@@ -32,6 +34,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//  Database and models
+db.connect(db.TEST_DB, function(err){
+  if (err) {
+    console.log('Unable to connect database.');
+    process.exit(1);
+  } else {
+    app.listen(3000, function(){
+      console.log('Listening on port 3000...');
+    });
+  }
+});
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/orders', orders);
@@ -44,6 +59,7 @@ app.use('/keyword', keyword);
 app.use('/login', login);
 app.use('/wishlist', wishlist);
 app.use('/admin', admin);
+app.use('/groups', groups);
 
 //  catch 404 and forward to error handler
 app.use(function(req, res, next) {

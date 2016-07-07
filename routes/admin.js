@@ -6,14 +6,12 @@ router.post('/', function (req, res) {
   var _rtnObj = new Object();
 
   if (true) {
-    console.log(req.body.action);
     if (req.body.action == 'add') {
       _rtnObj = req.body;
       _rtnObj.id = '114';
     } else {
       _rtnObj = req.body;
     }
-
     res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
     res.write(JSON.stringify(_rtnObj));
   } else {
@@ -49,6 +47,14 @@ router.get('/', function(req, res) {
     'name': '測試',
     'icon': 'fa fa-certificate fa-fw',
     'desc': '測試用'
+  },{
+    'id': '35',
+    'target': '_self',
+    'url': '',
+    'isParent': true,
+    'name': '系統',
+    'icon': 'fa fa-dashboard fa-fw',
+    'desc': '系統'
   },{
     'id': '36',
     'target': '_self',
